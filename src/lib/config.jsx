@@ -1,0 +1,20 @@
+export const categoryList = [
+    {
+        id:1,
+        name:'Programming',
+        icon:'/SelectCategory/coding.png',
+        prompt:''
+    },
+    {
+        id:2,
+        name:'Health',
+        icon:'/SelectCategory/lotus.png',
+        prompt:''
+    },
+    {
+        id:3,
+        name:'Creative',
+        icon:'/SelectCategory/creative.png',
+        prompt:''
+    }
+];

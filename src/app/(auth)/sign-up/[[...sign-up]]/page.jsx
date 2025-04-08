@@ -3,7 +3,7 @@ import { SignUp } from '@clerk/nextjs';
 
 export default function Page() {
   return (
-    <div className="h-auto lg:min-h-[calc(100vh - 64px)] pt-16 bg-gray-950 flex items-center justify-center p-4">
+    <div className="h-auto lg:min-h-screen bg-gray-950 flex items-center justify-center p-4">
       {/* Main container with proper sizing and centering */}
       <div className="w-full max-w-4xl flex flex-col lg:flex-row shadow-xl rounded-xl overflow-hidden">
         

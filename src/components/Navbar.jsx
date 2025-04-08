@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Button } from "./ui/button";
-import { ModeToggle } from "./ThemeSwitchDemo";
+import { useState,useEffect } from "react";
+
+import Link from "next/link";
 const Navbar = () => {
   const [shouldHide, setShouldHide] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -32,8 +32,8 @@ const Navbar = () => {
       <nav
         className={`
           fixed top-0 left-0 right-0 z-50 w-full
-          bg-slate-50
-          dark:bg-gradient-to-r dark:from-black dark:via-gray-900 dark:to-black
+         
+          bg-gradient-to-r from-black ia-gray-900 to-black
          
           transition-all duration-700 ease-in-out
           ${
@@ -63,15 +63,13 @@ const Navbar = () => {
             <div className="hidden lg:flex space-x-8">
               {[
                 { name: "Home", href: "/" },
-                { name: "Services", href: "/services" },
-                { name: "Products", href: "/products" },
                 { name: "About", href: "/about" },
                 { name: "Contact", href: "/contact" },
               ].map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-800 dark:text-gray-300 hover:text-cyan-400 transition-all duration-300 relative group"
+                  className=" text-gray-300 hover:text-cyan-400 transition-all duration-300 relative group"
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-purple-500 to-cyan-500 group-hover:w-full transition-all duration-300" />
@@ -81,22 +79,23 @@ const Navbar = () => {
 
             {/* Right section - Button with light effect */}
             <div className="flex items-center space-x-4">
-              <ModeToggle />
+            
 
+        <Link href="/dashboard">
               <button
               className="
-              relative overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-600
+              relative overflow-hidden bg-gradient-to-br 
               text-white px-6 py-2 rounded-md transition-all duration-300 ease-in-out
-              hover:from-purple-500 hover:to-cyan-500 hover:shadow-lg 
-              dark:from-purple-800 dark:to-cyan-800 dark:hover:from-purple-700 dark:hover:to-cyan-700
-              dark:hover:shadow-purple-800/30 hover:shadow-purple-500/30
-                border border-purple-300/20 dark:border-gray-700 group hidden sm:block">
+             hover:shadow-lg 
+              from-purple-800 to-cyan-800 hover:from-purple-700 hover:to-cyan-700
+              hover:shadow-purple-800/30
+                border border-gray-700 group hidden sm:block">
                 <span className="relative z-10 text-white">Get Started</span>
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-400 to-cyan-400 dark:from-purple-600 dark:to-cyan-600 opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
-                <span className="absolute -inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-purple-400 dark:via-purple-500 to-transparent" />
-                <span className="absolute -inset-x-3 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400 dark:via-cyan-500 to-transparent" />
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r   from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
+                <span className="absolute -inset-x-3 top-0 h-px bg-gradient-to-r from-transparent  via-purple-500 to-transparent" />
+                <span className="absolute -inset-x-3 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
               </button>
-
+              </Link>
               {/* Mobile menu button */}
               <div
                 className="lg:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer"
@@ -175,14 +174,14 @@ const Navbar = () => {
             }
           `}
           >
-            <Button
+            <button
               className="
                 bg-gradient-to-r from-purple-700 to-cyan-700 text-white px-10 py-3 rounded-md 
                 shadow-lg shadow-purple-900/30 hover:shadow-cyan-900/40 transition-all duration-300
               "
             >
               Get Started
-            </Button>
+            </button>
           </div>
         </div>
       </div>

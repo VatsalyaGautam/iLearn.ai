@@ -1,69 +1,16 @@
-import {
-  Yellowtail,
-  Playfair_Display,
-  Inter,
-  Roboto,
-  Roboto_Slab,
-  Afacad,
-  Ysabeau_SC,
-  Open_Sans,
-  Ubuntu,
-} from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import Navbar from "@/components/Navbar";
+
+
 import {
   ClerkProvider,
-  GoogleOneTap,
-  SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Footer from "@/components/Footer";
 
-// Font definitions remain unchanged
-const yellowTail = Yellowtail({
-  subsets: ["latin"],
-  variable: "--font-yellowtail",
-  weight: ["400"],
-});
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair-display",
-  weight: ["400", "700", "900"],
-});
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["100", "300", "400", "700", "900"],
-});
-
-const robotoSlab = Roboto_Slab({
-  subsets: ["latin"],
-  variable: "--roboto-slab",
-  weight: ["100", "300", "400", "700", "900"],
-});
-const afacad = Afacad({
-  subsets: ["latin"],
-  variable: "--afacad",
-  weight: ["400", "700"],
-});
-const ysabeau = Ysabeau_SC({
-  subsets: ["latin"],
-  variable: "--ysabeau",
-  weight: ["400", "700"],
-});
-const roboto = Roboto({
-  subsets: ["latin"],
-  variable: "--roboto",
-  weight: ["100", "300", "400", "700", "900"],
-});
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--open-sans",
-  weight: ["300", "400", "700"],
-});
+// Font configurations
 const ubuntu = Ubuntu({
   subsets: ["latin"],
   variable: "--ubuntu",
@@ -78,32 +25,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <GoogleOneTap />
       <html lang="en" suppressHydrationWarning>
-       
-          <body
-            className={`${robotoSlab.variable} ${roboto.variable} ${afacad.variable} ${openSans.variable} ${ysabeau.variable} ${ubuntu.variable} ${inter.variable} ${playfairDisplay.variable} ${yellowTail.variable} font-ubuntu bg-white dark:bg-black overflow-x-clip`}
-            suppressHydrationWarning
-          >
-             <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-            <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
-                <Navbar />
-              </SignedOut>
-              <SignedIn>
-                <Navbar />
-                <UserButton />
-              </SignedIn>
-            </header>
+        <body className={`${ubuntu.variable} font-ubuntu bg-slate-50 overflow-x-clip min-h-screen`} suppressHydrationWarning>
+
             {children}
-            </ThemeProvider>
-          </body>
-    
+        </body>
       </html>
     </ClerkProvider>
   );

@@ -12,35 +12,11 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			robotoSlab: [
-  				'var(--roboto-slab)'
-  			],
-  			roboto: [
-  				'var(--roboto)'
-  			],
-  			afacad: [
-  				'var(--afacad)'
-  			],
-  			openSans: [
-  				'var(--open-sans)'
-  			],
-  			ysabeau: [
-  				'var(--ysabeau)'
-  			],
+  			
   			ubuntu: [
   				'var(--ubuntu)'
-  			],
-  			inter: [
-  				'var(--font-inter)'
-  			],
-  			playfairDisplay: [
-  				'var(--font-playfair-display)'
-  			],
-  			yellowTail: [
-  				'var(--font-yellowtail)'
-  			],
-  			sans: [
-  				'var(--font-sans)',  ]
+  			]
+  			
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -59,7 +35,7 @@ module.exports = {
   				foreground: 'hsl(var(--popover-foreground))'
   			},
   			primary: {
-  				DEFAULT: '#875bf9',
+  				DEFAULT: '#42a5f5',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
