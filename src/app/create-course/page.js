@@ -6,7 +6,7 @@ import SelectCategory from "@/components/CreateCourse/SelectCategory";
 import TopicDescription from "@/components/CreateCourse/TopicDescription";
 import SelectOption from "@/components/CreateCourse/SelectOption";
 import { UserInputContext } from "@/context/UserInputContext";
-import { GenerateCourseLayout_AI } from "@/configs/AIModels";
+import { GenerateCourseLayout_AI } from "@/configs/AiModels";
 import LoadingDialog from "@/components/CreateCourse/LoadingDialog";
 import { db } from "@/configs/db";
 import uuid4 from "uuid4";
