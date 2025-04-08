@@ -1,7 +1,3 @@
-Here’s a next-level README.md for your iLearn.ai project, making it professional, engaging, and informative. 🚀
-
-⸻
-
 📚 iLearn.ai – AI-Powered Course Generator
 
 🚀 Build & Generate AI-Powered Courses in Seconds!
