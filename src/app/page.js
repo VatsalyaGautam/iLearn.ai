@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 import { SplineScene } from "@/components/ui/splite";
 import Navbar from "@/components/Navbar";
-
+import Testimonials from "@/components/Home/Testimonials"
 export default function Home() {
   return (
     <>
@@ -52,7 +52,7 @@ export default function Home() {
 
 
         {/* sec 2 starts */}
-        
+        <Testimonials/>
         {/* sec  2 ends here */}
 
         {/* sec 3 starts */}
