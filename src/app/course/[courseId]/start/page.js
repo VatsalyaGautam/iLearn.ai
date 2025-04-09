@@ -17,10 +17,13 @@ function CourseStart({params}) {
     GetCourse();
   }, []);
   
-  // Modified useEffect to use selectedChapterIndex
+  // Modified useEffect to pass adjusted chapter ID
   useEffect(() => {
     if (course && selectedChapterIndex !== null) {
-      GetSelectedChapterContent(selectedChapterIndex);
+      // Adjust the chapter ID by adding 1 (so index 0 becomes chapterId 1)
+      const adjustedChapterId = selectedChapterIndex + 1;
+      console.log("Using adjusted chapter ID:", adjustedChapterId);
+      GetSelectedChapterContent(adjustedChapterId);
     }
   }, [course, selectedChapterIndex]);
   
@@ -28,9 +31,9 @@ function CourseStart({params}) {
     try {
       const result = await db.select().from(CourseList)
         .where(eq(CourseList.courseId, params.courseId));
+      
       if (result && result.length > 0) {
         setCourse(result[0]);
-        // Removed the default chapter selection
       }
     } catch (error) {
       console.error("Error fetching course:", error);
@@ -40,15 +43,17 @@ function CourseStart({params}) {
   const GetSelectedChapterContent = async(chapterId) => {
     if (!course) return;
     setIsLoadingChapter(true);
+    
     try {
       const result = await db.select().from(Chapters)
         .where(and(
           eq(Chapters.chapterId, chapterId),
           eq(Chapters.courseId, course.courseId)
         ));
+      
       if (result.length > 0) {
         setChapterContent(result[0]);
-        console.log(result);
+        console.log("Chapter content found:", result);
       } else {
         console.log("No chapter content found for chapter ID:", chapterId);
         setChapterContent(null);
@@ -78,7 +83,7 @@ function CourseStart({params}) {
               key={index}
               onClick={() => {
                 setSelectedChapter(chapter);
-                setSelectedChapterIndex(index); // Update the selected index
+                setSelectedChapterIndex(index); // Store the original index
               }}
               className={`cursor-pointer hover:bg-blue-50 ${
                 selectedChapter?.name === chapter.name ?
