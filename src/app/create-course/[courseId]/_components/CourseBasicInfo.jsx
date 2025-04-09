@@ -13,7 +13,7 @@ function CourseBasicInfo({course}) {
             <p className='text-sm text-gray-400 mt-3 '>{course?.courseOutput?.course?.description}</p>
             <h2 className='font-medium mt-2 flex gap-2 items-center text-blue-400'><Puzzle/>{course?.category}</h2>
             <Link href={'/course/'+course?.courseId+"/start"}>
-            <Button className="mt-5 w-full bg-blue-400"> Start</Button>
+              <Button className="mt-5 w-full bg-blue-400"> Start</Button>
             </Link>
         </div>
         <div className='flex justify-end'>

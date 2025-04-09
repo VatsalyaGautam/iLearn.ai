@@ -45,40 +45,48 @@ function CourseLayout({ params }) {
     setLoading(true);
     const chapters = course?.courseOutput?.course?.chapters;
     const topic = course?.courseOutput?.course?.name;
-    
+
     chapters.forEach(async (chapter, index) => {
-      const PROMPT = 'Explain the concept in Detail on Topic :' + topic + ',Chapter :' + chapter?.name + ', in JSON format with the list of array with fields as title, explanation of given chapter in detail. Code Example (Code field in <precode> format) if applicable';
+      const PROMPT =
+        "Explain the concept in Detail on Topic :" +
+        topic +
+        ",Chapter :" +
+        chapter?.name +
+        ", in JSON format with the list of array with fields as title, explanation of given chapter in detail. Code Example (Code field in <precode> format) if applicable";
       console.log(PROMPT);
-      
+
       try {
-        let videoId = '';
+        let videoId = "";
         // youtube api
         try {
-          const resp = await service.getVideos(course?.name + ':' + chapter?.name);
+          const resp = await service.getVideos(
+            course?.name + ":" + chapter?.name
+          );
           console.log(resp);
-          videoId = resp[0]?.id?.videoId || '';
+          videoId = resp[0]?.id?.videoId || "";
         } catch (videoError) {
           console.error("Error fetching video:", videoError);
         }
-        
+
         // generate chapter content
         const result = await GenerateChapterContent_AI.sendMessage(PROMPT);
         console.log(result?.response?.text());
         const content = JSON.parse(result?.response?.text());
-        
+
+        // In your GenerateChapterContent function:
         await db.insert(Chapters).values({
           chapterId: index,
           courseId: course?.courseId,
           content: content,
-          videoId: videoId
+          videoId: videoId,
         });
       } catch (e) {
         console.log(e);
       }
     });
-    
+
     setLoading(false);
-    router.replace('/create-course/' + course?.courseId + "/finish");
+    router.replace("/create-course/" + course?.courseId + "/finish");
   };
 
   return (
@@ -93,7 +101,9 @@ function CourseLayout({ params }) {
       <CourseDetail course={course} />
       {/* list of lessons */}
       <ChapterList course={course} />
-      <Button onClick={GenerateChapterContent}>Generate Course Content</Button>
+      <Button onClick={GenerateChapterContent} className="mb-10 mt-4">
+        Generate Course Content
+      </Button>
     </div>
   );
 }

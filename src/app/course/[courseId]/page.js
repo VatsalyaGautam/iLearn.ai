@@ -6,36 +6,41 @@ import Header from '@/components/Dashboard/Header';
 import { db } from '@/configs/db'
 import { CourseList } from '@/configs/schema'
 import { eq } from 'drizzle-orm'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 
 function Course({params}) {
-  // Unwrap params using React.use()
-  const unwrappedParams = React.use(params);
   const [course, setCourse] = useState();
   
-  useEffect(() => {
-    if (unwrappedParams) {
-      GetCourse();
+  // Use useCallback to memoize the function
+  const getCourse = useCallback(async() => {
+    if (!params || !params.courseId) return;
+    
+    try {
+      const result = await db.select().from(CourseList)
+        .where(eq(CourseList.courseId, params.courseId));
+      if (result && result.length > 0) {
+        setCourse(result[0]);
+        console.log(result);
+      }
+    } catch (error) {
+      console.error("Error fetching course:", error);
     }
-  }, [unwrappedParams]);
+  }, [params]);
   
-  const GetCourse = async() => {
-    const result = await db.select().from(CourseList)
-      .where(eq(CourseList.courseId, unwrappedParams.courseId));
-    setCourse(result[0]);
-    console.log(result);
-  }
+  useEffect(() => {
+    getCourse();
+  }, [getCourse]); // Now getCourse is properly in the dependency array
   
   return (
     <div>
-        <Header/>
-        <div className='px-10 md:px-20 lg:px-44'>
+      <Header/>
+      <div className='px-10 md:px-20 lg:px-44'>
         <CourseBasicInfo course={course}/>
         <CourseDetail course={course}/>
         <ChapterList course={course}/>
-        </div>
+      </div>
     </div>
   )
 }
 
-export default Course;  // Fixed the export name to match the component name
+export default Course;

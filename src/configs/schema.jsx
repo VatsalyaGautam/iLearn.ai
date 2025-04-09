@@ -1,22 +1,22 @@
-import { json, pgTable, serial, varchar } from "drizzle-orm/pg-core"
+import { pgTable, serial, varchar, json, integer } from "drizzle-orm/pg-core";
 
-export const CourseList = pgTable('courseList', {
-  id: serial('id').primaryKey(),
-  courseId: varchar('courseId').notNull(),
-  name: varchar('name').notNull(),
-  category: varchar('category').notNull(),
-  level: varchar('level').notNull(),
-  includeVideo: varchar('includeVideo').notNull().default('Yes'),  // Fix this line
-  courseOutput: json('courseOutput').notNull(),
-  createdBy: varchar('createdBy').notNull(),
-  userName: varchar('username'),
-  userProfileImage: varchar('userProfileImage')
+export const CourseList = pgTable("courseList", {
+  id: serial("id").primaryKey(),
+  courseId: varchar("courseId").notNull(),
+  name: varchar("name").notNull(),
+  category: varchar("category").notNull(),
+  level: varchar("level").notNull(),
+  includeVideo: varchar("includeVideo").notNull().default("Yes"), // Fix this line
+  courseOutput: json("courseOutput").notNull(),
+  createdBy: varchar("createdBy").notNull(),
+  userName: varchar("username"),
+  userProfileImage: varchar("userProfileImage"),
 });
 
-export const Chapters = pgTable('chapters',{
-  id: serial('id').primaryKey(),
-  courseId: varchar('courseid').notNull(),
-  chapterId: varchar('chapterId', { length: 255 }).notNull(),
-  content: json('content').notNull(),
-  videoId: varchar('videoId').notNull()
-})
+export const Chapters = pgTable("chapters", {
+  id: serial("id").primaryKey(),
+  courseId: varchar("courseid").notNull(),
+  chapterId: integer("chapterId").notNull(),
+  content: json("content").notNull(),
+  videoId: varchar("videoId").notNull(),
+});
